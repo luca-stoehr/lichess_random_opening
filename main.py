@@ -10,7 +10,7 @@ from io import StringIO
 import urllib.parse
 
 # User settings -----------------------------------------------------------
-rating_difference_threshold = 1
+engine_difference_threshold = 1
 lichess_API_key = None      # your lichess API key with challenge permissions as string
 friend_ID = "maia1"         # lichess username of friend to challenge
 start_time = 300            # in seconds
@@ -19,7 +19,7 @@ color = "random"            # "white", "black", or "random"
 
 # Don't change below this line --------------------------------------------
 
-def draw_random_opening(openings, rating_difference_threshold):
+def draw_random_opening(openings, engine_difference_threshold):
     random_opening = random.choice(openings)
     conn.request("GET", "/opening/{}".format(random_opening))
 
@@ -41,9 +41,9 @@ def draw_random_opening(openings, rating_difference_threshold):
     res3 = conn.getresponse()
     engine_data = res3.read()
     engine_rating_string = re.findall(r'"cp":(-?\d+)', engine_data.decode("utf-8"))[0]
-    if abs(int(engine_rating_string)) > rating_difference_threshold*100:
+    if abs(int(engine_rating_string)) > engine_difference_threshold*100:
         print(f"Engine rating {int(engine_rating_string)/100} is too high, redrawing opening.")
-        [random_opening, fen] = draw_random_opening(openings, rating_difference_threshold)
+        [random_opening, fen] = draw_random_opening(openings, engine_difference_threshold)
     return random_opening, fen
 
 conn = http.client.HTTPSConnection("lichess.org")
@@ -56,7 +56,7 @@ data = res1.read()
 
 openings = re.findall(r'/opening/([^"]+)"', data.decode("utf-8"))
 
-[random_opening, fen] = draw_random_opening(openings, rating_difference_threshold)
+[random_opening, fen] = draw_random_opening(openings, engine_difference_threshold)
 
 print(f"Selected Opening: {random_opening}")
 print(f"FEN: {fen}")
