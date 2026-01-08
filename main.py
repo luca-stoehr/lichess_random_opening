@@ -11,7 +11,7 @@ import urllib.parse
 
 # User settings -----------------------------------------------------------
 engine_difference_threshold = 1
-lichess_API_key = None      # your lichess API key with challenge permissions as string
+lichess_API_key = None     # your lichess API key with challenge permissions as string
 friend_ID = "maia1"         # lichess username of friend to challenge
 start_time = 300            # in seconds
 increment = 3               # in seconds
@@ -61,19 +61,20 @@ openings = re.findall(r'/opening/([^"]+)"', data.decode("utf-8"))
 print(f"Selected Opening: {random_opening}")
 print(f"FEN: {fen}")
 
-headers = {
-    'Content-Type': "application/x-www-form-urlencoded",
-    'Authorization': "Bearer {}".format(lichess_API_key)
-}
+if lichess_API_key:
+    headers = {
+        'Content-Type': "application/x-www-form-urlencoded",
+        'Authorization': "Bearer {}".format(lichess_API_key)
+    }
 
-data = urllib.parse.urlencode({
-    "clock.limit": start_time,
-    "clock.increment": increment,
-    "color": "random",
-    "fen": fen,
-    "variant": "standard"
-})
+    data = urllib.parse.urlencode({
+        "clock.limit": start_time,
+        "clock.increment": increment,
+        "color": "random",
+        "fen": fen,
+        "variant": "standard"
+    })
 
-conn.request("POST", "/api/challenge/{}".format(friend_ID), data, headers)
-conn.close()
-
+    conn.request("POST", "/api/challenge/{}".format(friend_ID), data, headers)
+    conn.close()
+    print(f"Challenge sent to {friend_ID}!")
