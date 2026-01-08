@@ -8,7 +8,7 @@
 
 ## 1. What does this project do?
 
-This picks a random opening, generates the corresponding FEN and can invite a friend to an unranked match on lichess.org. You can switch up your games with friends if you feel like playing without starting with the same openings you already know your friends for.
+This picks a random opening, generates the corresponding FEN and can invite a friend to an unranked match on lichess.org. You can switch up your games with friends if you feel like playing without the same openings you already know your friends for.
 
 ## 2. How do I set it up?
 
