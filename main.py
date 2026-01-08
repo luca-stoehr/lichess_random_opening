@@ -10,12 +10,12 @@ from io import StringIO
 import urllib.parse
 
 # User settings -----------------------------------------------------------
-engine_difference_threshold = 1
 lichess_API_key = None     # your lichess API key with challenge permissions as string
 friend_ID = "maia1"         # lichess username of friend to challenge
 start_time = 300            # in seconds
 increment = 3               # in seconds
 color = "random"            # "white", "black", or "random"
+engine_difference_threshold = 1
 
 # Don't change below this line --------------------------------------------
 
