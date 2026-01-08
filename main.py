@@ -1,6 +1,5 @@
 # Challenge a friend on Lichess.org to a game starting from a random opening position
 # Author: Luca Stöhr on 07.01.2025
-# add blacklist of openings?
 import http.client
 import re
 import random
