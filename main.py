@@ -9,7 +9,7 @@ from io import StringIO
 import urllib.parse
 
 # User settings -----------------------------------------------------------
-lichess_API_key = None     # your lichess API key with challenge permissions as string
+lichess_API_key = None    # your lichess API key with challenge permissions as string
 friend_ID = "maia1"         # lichess username of friend to challenge
 start_time = 300            # in seconds
 increment = 3               # in seconds
@@ -69,7 +69,7 @@ if lichess_API_key:
     data = urllib.parse.urlencode({
         "clock.limit": start_time,
         "clock.increment": increment,
-        "color": "random",
+        "color": color,
         "fen": fen,
         "variant": "standard"
     })
